@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap')
+$font-family: poppins
+$light-blue: #8EDCFF
+$blue: #3357AA
+$phone-size: 768px
+
+body
+    background-color: #ddd
+    font-family: $font-family
+    background-image: url("./3d-snowy-landscape-with-trees.jpeg")
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    height: 100vh
+    width: 100vw
+    margin: 0
+    padding: 0
+    top: 0
+    overflow: hidden
+    
+    .background
+        @media (min-width: $phone-size)
+            padding-top: calc(50vh - 165px)
+        @media (max-width: $phone-size)
+            padding-top: 0
+    
+        #snow-form
+            background-color: white
+            margin: 0 auto 0 auto
+            @media (min-width: $phone-size)
+                border-radius: 24px
+                width: 600px
+                height: 190px
+                padding: 24px 64px
+            @media (max-width: $phone-size)
+                border-radius: 0 0 24px 24px
+                width: calc(100% - 32px)
+                padding: 24px 16px
+
+            h1
+                font-size: 32px
+                text-align: center
+                margin: 8px 0 24px 0
+
+            #snow-form-input
+                display: grid
+                grid-template-columns: auto 1px 160px
+                border: 1px #ccc dotted
+                border-radius: 8px
+                @media (min-width: $phone-size)
+                    grid-template-columns: auto 1px 160px
+                @media (max-width: $phone-size)
+                    grid-template-columns: auto
+                    grid-template-rows: 96px 1px 96px
+                
+                input
+                    border: none
+                    font-size: 16px
+                    padding-left: 16px
+                    font-family: $font-family
+                    border-radius: 8px
+
+                #snow-form-input-bar-line
+                    font-family: $font-family
+                    @media (min-width: $phone-size)
+                        height: 48px
+                        width: 160px
+                        border-left: 1px #ccc dotted
+                        margin: 8px 0
+                    @media (max-width: $phone-size)
+                        border-top: 1px #ccc dotted
+                        margin: 0 16px 16px 16px
+
+
+                button
+                    color: white
+                    background-color: $blue
+                    border-radius: 8px
+                    margin: 16px
+                    border: none
+                    font-family: $font-family
+                    cursor: pointer
+
+        footer
+            position: absolute
+            bottom: 0
+            width: 100%
+            text-align: center
+            color: white
+            background-color: $blue
+            padding: 16px 0
+
+.blue
+    color: $blue
+
+.light-blue
+    color: $light-blue
