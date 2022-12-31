@@ -1,0 +1,142 @@
+[
+  {
+    "postalCode": "04101",
+    "country": "United States",
+    "district": "Maine",
+    "city": "Portland",
+    "latitude": 43.661,
+    "longitude": -70.255,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  },
+  {
+    "postalCode": "13790",
+    "country": "United States",
+    "district": "New York",
+    "city": "Maine",
+    "latitude": 42.193,
+    "longitude": -76.061,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  },
+  {
+    "postalCode": "97204",
+    "country": "United States",
+    "district": "Oregon",
+    "city": "Portland",
+    "latitude": 45.52,
+    "longitude": -122.674,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  },
+  {
+    "postalCode": "78374",
+    "country": "United States",
+    "district": "Texas",
+    "city": "Portland",
+    "latitude": 27.877,
+    "longitude": -97.323,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  },
+  {
+    "postalCode": "37148",
+    "country": "United States",
+    "district": "Tennessee",
+    "city": "Portland",
+    "latitude": 36.582,
+    "longitude": -86.516,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  },
+  {
+    "postalCode": "45039",
+    "country": "United States",
+    "district": "Ohio",
+    "city": "Maineville",
+    "latitude": 39.315,
+    "longitude": -84.221,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  },
+  {
+    "postalCode": "48875",
+    "country": "United States",
+    "district": "Michigan",
+    "city": "Portland",
+    "latitude": 42.869,
+    "longitude": -84.903,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  },
+  {
+    "postalCode": "47371",
+    "country": "United States",
+    "district": "Indiana",
+    "city": "Portland",
+    "latitude": 40.434,
+    "longitude": -84.978,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  },
+  {
+    "postalCode": "06459",
+    "country": "United States",
+    "district": "Connecticut",
+    "city": "Portland",
+    "latitude": 41.573,
+    "longitude": -72.641,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  },
+  {
+    "postalCode": "71663",
+    "country": "United States",
+    "district": "Arkansas",
+    "city": "Portland",
+    "latitude": 33.238,
+    "longitude": -91.512,
+    "snowDayProbability": 0.0,
+    "snowData": {
+      "totalSnow": 0.0,
+      "snowingHours": 0.0,
+      "prediction": "No chance of school being cancelled from snow"
+    }
+  }
+]

@@ -1,23 +1,148 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="styles.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div class="background">
-            <div id="snow-form">
-                <h1><span class="blue">SNOW DAY</span> <span class="light-blue">CALCULATOR</span></h1>
-                <div id="snow-form-input">
-                    <input placeholder="City Name">
-                    <div id="snow-form-input-bar-line"></div>
-                    <button>Calculate</button>
-                </div>
-                <p>Enter any City Located in the United States</p>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app" class="background">
+      <div class="white-container">
+        <div id="snow-form" :class="'margin-screen-displace-' + display">
+          <h1>
+            <span class="blue">SNOW DAY</span>
+            <span class="light-blue"> CALCULATOR</span>
+          </h1>
+          <div id="snow-form-input">
+            <input placeholder="City Name" />
+            <div id="snow-form-input-bar-line"></div>
+            <button @click="search()">Search</button>
+          </div>
+          <div
+            id="snow-search-options"
+            :style="(searchOptions.length > 1 && display == 0) ? { height: 'calc(100vh - 420px)', overflow: 'auto' } : { height: '0', overflow: 'none' } "
+          >
+            <div
+              v-for="result in searchOptions"
+              class="result-container"
+              @click="selected(result)"
+            >
+              <div>
+                <p>{{result.city}}, {{result.district}}</p>
+                <p>{{result.postalCode}}</p>
+                <p>{{result.country}}</p>
+              </div>
+              <div>
+                <p>{{result.snowDayProbability * 100}}%</p>
+                <p>Chance of Snow Day</p>
+              </div>
             </div>
-            <footer>
-                © 2022 - SnowDayCalculator | All rights reserved
-            </footer>
+          </div>
+          <p class="snow-form-footer">
+            Enter any State and City Located in the United States
+          </p>
         </div>
-    </body>
+        <div id="data">
+          <div class="data-header">
+            <h2>
+              <span class="blue">SNOW</span>
+              <span class="light-blue"> DAY</span>
+            </h2>
+            <p class="blue">
+              <span style="font-weight: bold">Prediction</span>:
+              {{snowData.snowData?.prediction}}
+            </p>
+          </div>
+          <div
+            class="data-container"
+            :style="(display == 1) ? { height: 'auto'} : { height: '0' }"
+          >
+            <div class="data-weather-container">
+              <div class="datetime-container">
+                <div class="datetime-item">
+                  <img src="./images/calendar.svg" />
+                  <p>
+                    <span class="blue">
+                      {{monthToString(date.getMonth())}} - {{date.getDate()}} -
+                      {{date.getFullYear()}}
+                    </span>
+                  </p>
+                </div>
+                <div class="datetime-item">
+                  <img src="./images/clock.svg" />
+                  <p>
+                    <span class="blue">
+                      {{(date.getHours() %
+                      12)}}:{{date.getMinutes().toString().padStart(2,'0')}}:{{date.getSeconds().toString().padStart(2,
+                      '0')}} {{(date.getHours() > 11) ? "PM" : "AM"}}
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="location-container">
+                <p class="location-city">
+                  {{snowData.city}}, {{snowData.district}}
+                </p>
+                <p>
+                  Total Snow Inches:
+                  <span style="font-weight: bold"
+                    >{{snowData.snowData?.totalSnow}}
+                  </span>
+                  in
+                </p>
+                <p>
+                  Hours of Snowing:
+                  <span style="font-weight: bold"
+                    >{{snowData.snowData?.snowingHours}}</span
+                  >
+                </p>
+              </div>
+              <div class="temp-container">
+                <div class="temp-item">
+                  <p class="temp-item-title">
+                    <span class="blue">Temperature Min</span>
+                  </p>
+                  <p><span class="blue">24.14 C</span></p>
+                </div>
+                <div class="temp-item">
+                  <p class="temp-item-title">
+                    <span class="blue">Temperature Max</span>
+                  </p>
+                  <p><span class="blue">24.14 C</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="percentage-container">
+              <div
+                v-for="index in 90"
+                class="block-container"
+                :style="{ rotate: (index * 4) + 'deg' }"
+              >
+                <div
+                  class="block"
+                  :style="{ backgroundColor: (shouldShowColor(index)) ? '#3357AA' : 'black' }"
+                ></div>
+              </div>
+              <div class="percentage-text-container">
+                <h4>
+                  <span style="font-weight: black"
+                    >{{snowData.snowDayProbability * 100}}</span
+                  ><span style="font-weight: normal">%</span>
+                </h4>
+                <p>Chances Of Snow Falling Today</p>
+              </div>
+            </div>
+          </div>
+          <div class="data-bottom">
+            <p @click="goBack()"><span class="blue">Back</span></p>
+            <button>Share</button>
+          </div>
+        </div>
+      </div>
+
+      <footer>© 2022 - SnowDayCalculator | All rights reserved</footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
 </html>
