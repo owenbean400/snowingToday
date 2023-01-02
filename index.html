@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div id="app" class="background">
@@ -14,7 +15,7 @@
             <span class="light-blue"> CALCULATOR</span>
           </h1>
           <div id="snow-form-input">
-            <input placeholder="City Name" />
+            <input placeholder="City Name" v-model="querySearch" />
             <div id="snow-form-input-bar-line"></div>
             <button @click="search()">Search</button>
           </div>
@@ -28,7 +29,12 @@
               @click="selected(result)"
             >
               <div>
-                <p>{{result.city}}, {{result.district}}</p>
+                <p>
+                  {{result.city}}<span
+                    v-if="result.city != null && result.district != null"
+                    >, </span
+                  >{{result.district}}
+                </p>
                 <p>{{result.postalCode}}</p>
                 <p>{{result.country}}</p>
               </div>
@@ -38,8 +44,12 @@
               </div>
             </div>
           </div>
-          <p class="snow-form-footer">
-            Enter any State and City Located in the United States
+          <p class="snow-form-footer" v-if="loading">Search loading...</p>
+          <p class="snow-form-footer" v-else-if="errorMsg != ''">
+            {{errorMsg}}
+          </p>
+          <p class="snow-form-footer" v-else>
+            Enter any State and City Located in the United State
           </p>
         </div>
         <div id="data">
@@ -49,7 +59,9 @@
               <span class="light-blue"> DAY</span>
             </h2>
             <p class="blue">
-              <span style="font-weight: bold">Prediction</span>:
+              <span style="font-weight: bold" class="disappear-phone"
+                >Prediction:</span
+              >
               {{snowData.snowData?.prediction}}
             </p>
           </div>
@@ -72,8 +84,7 @@
                   <img src="./images/clock.svg" />
                   <p>
                     <span class="blue">
-                      {{(date.getHours() %
-                      12)}}:{{date.getMinutes().toString().padStart(2,'0')}}:{{date.getSeconds().toString().padStart(2,
+                      {{getHours(date)}}:{{date.getMinutes().toString().padStart(2,'0')}}:{{date.getSeconds().toString().padStart(2,
                       '0')}} {{(date.getHours() > 11) ? "PM" : "AM"}}
                     </span>
                   </p>
@@ -81,20 +92,22 @@
               </div>
               <div class="location-container">
                 <p class="location-city">
-                  {{snowData.city}}, {{snowData.district}}
+                  {{snowData.city}}<span
+                    v-if="snowData.city != null && snowData.district != null"
+                    >, </span
+                  >{{snowData.district}}
                 </p>
                 <p>
-                  Total Snow Inches:
                   <span style="font-weight: bold"
                     >{{snowData.snowData?.totalSnow}}
                   </span>
-                  in
+                  inches<span class="disappear-phone"> of snow</span>
                 </p>
                 <p>
-                  Hours of Snowing:
                   <span style="font-weight: bold"
                     >{{snowData.snowData?.snowingHours}}</span
                   >
+                  Hours<span class="disappear-phone"> of Snowing</span>
                 </p>
               </div>
               <div class="temp-container">
@@ -102,13 +115,21 @@
                   <p class="temp-item-title">
                     <span class="blue">Temperature Min</span>
                   </p>
-                  <p><span class="blue">24.14 C</span></p>
+                  <p>
+                    <span class="blue"
+                      >{{snowData.snowData?.minTemperature}} F</span
+                    >
+                  </p>
                 </div>
                 <div class="temp-item">
                   <p class="temp-item-title">
                     <span class="blue">Temperature Max</span>
                   </p>
-                  <p><span class="blue">24.14 C</span></p>
+                  <p>
+                    <span class="blue"
+                      >{{snowData.snowData?.maxTemperature}} F</span
+                    >
+                  </p>
                 </div>
               </div>
             </div>
