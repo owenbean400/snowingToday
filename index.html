@@ -3,8 +3,17 @@
   <head>
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Snow Day Calculator will calculate the percentage of having a snow day based on the weather data.">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#3357aa">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Snow Day Calculator</title>
   </head>
   <body>
     <div id="app" class="background">
@@ -156,12 +165,26 @@
           </div>
           <div class="data-bottom">
             <p @click="goBack()"><span class="blue">Back</span></p>
-            <button>Share</button>
+            <button @click="share = true">Share</button>
           </div>
         </div>
       </div>
 
-      <footer>© 2022 - SnowDayCalculator | All rights reserved</footer>
+      <footer>Built by <a href="https://github.com/OGRages/snowing-today" target="_blank">OG Rages (Backend)</a> and <a href="https://github.com/owenbean400/snowingToday" target="_blank">Owen Bean (Frontend)</a></footer>
+
+      <div v-if="share" class="share">
+        <div class="sharing">
+          <div class="share-icon-container">
+            <a class="share-icon" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.snowing.today&quote=Snow%20Day%20Calculator" title="Share on Facebook" target="_blank"><img class="share-icon-img" alt="Share on Facebook" src="./images/Facebook.svg" /></a>
+            <a class="share-icon" href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwww.snowing.today&text=Snow%20Day%20Calculator:%20http%3A%2F%2Fwww.snowing.today" target="_blank" title="Tweet"><img class="share-icon-img" alt="Tweet" src="./images/Twitter.svg" /></a>
+            <a class="share-icon" href="http://www.reddit.com/submit?url=http%3A%2F%2Fwww.snowing.today&title=Snow%20Day%20Calculator" target="_blank" title="Submit to Reddit"><img class="share-icon-img" alt="Submit to Reddit" src="./images/Reddit.svg" /></a>
+            <div class="share-icon" @click="copyClipboard('https://snowing.today')">
+              <img class="share-icon-img" alt="Copy Link" src="./images/copy.svg" />
+            </div>
+          </div>
+          <button @click="share = false">Close</button>
+        </div>
+      </div>
     </div>
 
     <script src="./main.js"></script>
