@@ -1,34 +1,35 @@
 const { createApp } = Vue;
 
 const weatherData = [
-{
-  postalCode: "04101",
-  country: "United States",
-  district: "Maine",
-  city: "Portland",
-  latitude: 43.661,
-  longitude: -70.255,
-  snowDayProbability: 0.45,
-  snowData: {
-    totalSnow: 0.1,
-    snowingHours: 0.1,
-    prediction: "No chance of school being cancelled from snow",
+  {
+    postalCode: "04101",
+    country: "United States",
+    district: "Maine",
+    city: "Portland",
+    latitude: 43.661,
+    longitude: -70.255,
+    snowDayProbability: 0.45,
+    snowData: {
+      totalSnow: 0.1,
+      snowingHours: 0.1,
+      prediction: "No chance of school being cancelled from snow",
+    },
   },
-},
-{
-  postalCode: "13790",
-  country: "United States",
-  district: "New York",
-  city: "Maine",
-  latitude: 42.193,
-  longitude: -76.061,
-  snowDayProbability: 0.86,
-  snowData: {
-    totalSnow: 1.8,
-    snowingHours: 1.0,
-    prediction: "Slight possible delay of school",
+  {
+    postalCode: "13790",
+    country: "United States",
+    district: "New York",
+    city: "Maine",
+    latitude: 42.193,
+    longitude: -76.061,
+    snowDayProbability: 0.86,
+    snowData: {
+      totalSnow: 1.8,
+      snowingHours: 1.0,
+      prediction: "Slight possible delay of school",
+    },
   },
-}];
+];
 
 createApp({
   methods: {
@@ -36,7 +37,6 @@ createApp({
       this.loading = true;
 
       try {
-        /*
         const response = await axios.get(
           "http://localhost:8080/api/v1/locations",
           {
@@ -50,8 +50,7 @@ createApp({
         );
 
         let data = response.data.data;
-        */
-        let data = weatherData;
+        // let data = weatherData;
         if (!Array.isArray(data)) {
           this.errorMsg = "Error searching!";
         } else if (data.length == 0) {
@@ -112,17 +111,19 @@ createApp({
       return date.getHours() % 12;
     },
     shouldShowColor(index) {
-      return this.snowData.snowDayProbability * 90 > index;
+      return (this.snowData.snowDayProbability * 90) / 100 > index;
     },
     async copyClipboard(copyMsg) {
       try {
         await navigator.clipboard.writeText(copyMsg);
         this.textCopied = true;
-        setTimeout(() => {this.textCopied = false}, 2000);
+        setTimeout(() => {
+          this.textCopied = false;
+        }, 2000);
       } catch (err) {
         console.log("Error copy");
       }
-    }
+    },
   },
   data() {
     return {
@@ -134,7 +135,7 @@ createApp({
       loading: false,
       querySearch: "",
       share: false,
-      textCopied: false
+      textCopied: false,
     };
   },
 }).mount("#app");
